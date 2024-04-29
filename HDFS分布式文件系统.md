@@ -42,7 +42,7 @@ Bit B KB MB GB TB PB EB ZB YB BB NB DB
 
 ## 5.HDFS架构包含三个部分
 
-![HDFS架构](tupian\3.png)
+![HDFS架构](tupian/3.png)
 
 1. **NameNode**用于**存储、生成文件系统的元数据**。运行一个实例。
    1. 负责管理分布式文件系统的**命名空间（Namespace）**，保存了两个核心的数据结构，即**FsImage**和**EditLog**。
@@ -76,7 +76,7 @@ HDFS是一个部署在集群上的分布式文件系统，因此，很多数据�
 
 ## 7.HDFS高可用
 
-![image-20240429191804793](tupian\2.png)
+![image-20240429191804793](tupian/2.png)
 
 主要体现在利用zookeeper实现主备NameNode，以解决**单点NameNode**故障问题。
 
@@ -95,7 +95,7 @@ HDFS是一个部署在集群上的分布式文件系统，因此，很多数据�
 
 **元数据持久化**
 
-![image-20240429192342764](tupian\8.png)
+![image-20240429192342764](tupian/8.png)
 
 - EditLog:记录用户的操作日志，用以在FSImage的基础上生成新的文件系统镜像。
 - FSImage:用以阶段性保存文件镜像。
@@ -131,7 +131,7 @@ HDFS是一个部署在集群上的分布式文件系统，因此，很多数据�
 
 ## 9.读写流程
 
-![image-20240429193733727](tupian\7.png)
+![image-20240429193733727](tupian/7.png)
 
 1. 业务应用调用HDFS Client提供的API，请求写入文件。
 2. HDFS Client联系NameNode，NameNode在元数据中创建文件节点。
@@ -141,7 +141,7 @@ HDFS是一个部署在集群上的分布式文件系统，因此，很多数据�
 6. 所有数据确认完成后，业务调用HDFS Client关闭文件。
 7. 业务调用close, flush后HDFS Client联系NameNode，确认数据写完成，NameNode持久化元数据。
 
-![image-20240429193923298](tupian\6.png)
+![image-20240429193923298](tupian/6.png)
 
 1. 业务应用调用HDFS Client提供的API打开文件。
 2. HDFS Client联系NameNode，获取到文件信息（数据块、DataNode位置信息）。
